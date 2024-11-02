@@ -18,5 +18,4 @@ jobs:
       - name: Authenticate with GitHub Packages
         run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.AUTH_TOKEN_PACKAGE_READ }}" >> ~/.npmrc
       - run: npm ci
-      - run: npm run build
       - run: npm publish
