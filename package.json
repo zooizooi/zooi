@@ -1,0 +1,18 @@
+{
+  "name": "zooi",
+  "version": "0.0.2",
+  "scripts": {
+    "run": "node main.js"
+  },
+  "bin": {
+    "zooi": "./run.cmd",
+    "z": "./run.cmd"
+  },
+  "dependencies": {
+    "@zooizooi/eslint-config": "^1.1.0",
+    "chalk": "^4.1.2",
+    "globals": "^15.11.0",
+    "prompts": "^2.4.2",
+    "simple-git": "^3.27.0"
+  }
+}
