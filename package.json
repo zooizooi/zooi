@@ -1,6 +1,7 @@
 {
-  "name": "zooi",
+  "name": "@zooizooi/zooi",
   "version": "0.0.2",
+  "description": "Toolkit",
   "scripts": {
     "run": "node main.js"
   },
