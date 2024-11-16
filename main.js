@@ -85,6 +85,7 @@ const emptyBin = require('./scripts/empty-bin');
         removeGitFolder(projectName);
         updateTextInFile(`./${projectName}/package.json`, 'boilerplate-experiments-threejs', projectName);
         updateTextInFile(`./${projectName}/index.html`, 'Boilerplate Experiments ThreeJS', projectName);
+        updateTextInFile(`./${projectName}/src/Globals.ts`, 'boilerplate-experiments-threejs', projectName);
         console.log('2. Files updated');
 
         console.log('3. Installing packages:');
