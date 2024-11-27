@@ -1,13 +1,17 @@
+// Vendor
 const prompts = require('prompts');
 const simpleGit = require('simple-git');
-const fs = require('fs');
-const { spawn } = require('child_process');
-const path = require('path');
 const chalk = require('chalk');
 
+// Helpers
+const removeGitFolder = require('./helpers/removeGitFolder');
+const updateTextInFile = require('./helpers/updateTextInFile');
+const removeFile = require('./helpers/removeFile');
+const runNi = require('./helpers/runNi');
+
+// Options
 const boilerplates = require('./boilerplates');
 const scripts = require('./scripts');
-
 const emptyBin = require('./scripts/empty-bin');
 
 (async() => {
@@ -86,77 +90,11 @@ const emptyBin = require('./scripts/empty-bin');
         updateTextInFile(`./${projectName}/package.json`, 'boilerplate-experiments-threejs', projectName);
         updateTextInFile(`./${projectName}/index.html`, 'Boilerplate Experiments ThreeJS', projectName);
         updateTextInFile(`./${projectName}/src/Globals.ts`, 'boilerplate-experiments-threejs', projectName);
+        removeFile(`./${projectName}/README.md`);
         console.log('2. Files updated');
 
         console.log('3. Installing packages:');
         console.log('───────────────────────');
         runNi(`./${projectName}/`);
-    }
-
-    function removeGitFolder(projectName) {
-        fs.rmSync(`./${projectName}/.git`, { recursive: true, force: true }, (err) => {
-            if (err) console.error('Error removing folder:', err);
-        });
-    }
-
-    function updateTextInFile(path, searchValue, replaceValue) {
-        fs.readFile(path, 'utf8', (err, data) => {
-            if (err) {
-                console.error('Error reading file:', err);
-                return;
-            }
-
-            const updatedData = data.replace(new RegExp(searchValue, 'g'), replaceValue);
-
-            fs.writeFile(path, updatedData, 'utf8', (err) => {
-                if (err) {
-                    console.error('Error writing file:', err);
-                    return;
-                }
-                // console.log('File updated successfully!');
-            });
-        });
-    }
-
-    /**
-     * Runs ni (from @antfu/ni) in the specified directory
-     * @param {string} targetDir - The directory where ni should be run
-     * @returns {Promise<void>}
-     */
-    function runNi(targetDir) {
-        return new Promise((resolve, reject) => {
-            // Normalize the path
-            const normalizedPath = path.resolve(targetDir);
-
-            // Determine the ni command based on the platform
-            const niCmd = process.platform === 'win32' ? 'ni.cmd' : 'ni';
-
-            // Spawn ni process
-            const niProcess = spawn(niCmd, [], {
-                cwd: normalizedPath,
-                stdio: 'inherit', // This will pipe the output to the parent process
-                env: {
-                    ...process.env,
-                    // Ensure PATH includes global npm binaries
-                    PATH: `${process.env.PATH}:${process.env.npm_config_prefix}/bin`,
-                },
-            });
-
-            niProcess.on('close', (code) => {
-                if (code !== 0) {
-                    reject(new Error(`ni failed with code ${code}`));
-                } else {
-                    resolve();
-                }
-            });
-
-            niProcess.on('error', (error) => {
-                if (error.code === 'ENOENT') {
-                    reject(new Error('ni not found. Please install @antfu/ni first using: npm i -g @antfu/ni'));
-                } else {
-                    reject(new Error(`Failed to start ni: ${error.message}`));
-                }
-            });
-        });
     }
 })();
