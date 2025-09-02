@@ -57,13 +57,13 @@ const emptyBin = require('./scripts/empty-bin');
     }
 
     if (response.scripts) {
-        switch(response.scripts) {
+        switch (response.scripts) {
             case 'empty-bin': emptyBin();
         }
     }
 
     async function setupBoilerplate(name, projectName) {
-        switch(name) {
+        switch (name) {
             case 'basic':
                 createBoilerPlate({
                     name,
