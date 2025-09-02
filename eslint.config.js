@@ -1,7 +1,7 @@
-const config = require('@zooizooi/eslint-config');
-const globals = require('globals');
+import config from '@zooizooi/eslint-config';
+import globals from 'globals';
 
-module.exports = [
+export default [
     ...config.vanilla,
     {
         languageOptions: {

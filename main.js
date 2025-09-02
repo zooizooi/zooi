@@ -1,18 +1,18 @@
 // Vendor
-const prompts = require('prompts');
-const simpleGit = require('simple-git');
-const chalk = require('chalk');
+import prompts from 'prompts';
+import simpleGit from 'simple-git';
+import chalk from 'chalk';
 
 // Helpers
-const removeGitFolder = require('./helpers/removeGitFolder');
-const updateTextInFile = require('./helpers/updateTextInFile');
-const removeFile = require('./helpers/removeFile');
-const runNi = require('./helpers/runNi');
+import removeGitFolder from './helpers/removeGitFolder.js';
+import updateTextInFile from './helpers/updateTextInFile.js';
+import removeFile from './helpers/removeFile.js';
+import runNi from './helpers/runNi.js';
 
 // Options
-const boilerplates = require('./boilerplates');
-const scripts = require('./scripts');
-const emptyBin = require('./scripts/empty-bin');
+import boilerplates from './boilerplates.js';
+import scripts from './scripts.js';
+import emptyBin from './scripts/empty-bin.js';
 
 (async() => {
     const response = await prompts([

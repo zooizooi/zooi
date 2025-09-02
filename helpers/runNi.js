@@ -1,12 +1,12 @@
-const path = require('path');
-const { spawn } = require('child_process');
+import path from 'path';
+import { spawn } from 'child_process';
 
 /**
  * Runs ni (from @antfu/ni) in the specified directory
  * @param {string} targetDir - The directory where ni should be run
  * @returns {Promise<void>}
  */
-module.exports = function runNi(targetDir) {
+export default function runNi(targetDir) {
     return new Promise((resolve, reject) => {
         // Normalize the path
         const normalizedPath = path.resolve(targetDir);
@@ -41,4 +41,4 @@ module.exports = function runNi(targetDir) {
             }
         });
     });
-};
+}

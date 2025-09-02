@@ -1,7 +1,7 @@
-const fs = require('fs');
+import fs from 'fs';
 
-module.exports = function removeGitFolder(projectName) {
+export default function removeGitFolder(projectName) {
     fs.rmSync(`./${projectName}/.git`, { recursive: true, force: true }, (err) => {
         if (err) console.error('Error removing folder:', err);
     });
-};
+}

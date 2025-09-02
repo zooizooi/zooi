@@ -1,7 +1,7 @@
-const fs = require('fs');
+import fs from 'fs';
 
-module.exports = function removeFile(file) {
+export default function removeFile(file) {
     fs.rmSync(file, { force: true }, (err) => {
         if (err) console.error('Error removing file:', err);
     });
-};
+}

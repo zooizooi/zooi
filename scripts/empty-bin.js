@@ -1,4 +1,4 @@
-const { exec } = require('child_process');
+import { exec } from 'child_process';
 
 function emptyBin() {
     // Updated command with error action and proper path handling
@@ -25,4 +25,4 @@ function emptyBin() {
     });
 }
 
-module.exports = emptyBin;
+export default emptyBin;
