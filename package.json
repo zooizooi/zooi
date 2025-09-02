@@ -1,6 +1,6 @@
 {
   "name": "@zooizooi/zooi",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Toolkit",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
