@@ -1,10 +1,10 @@
 module.exports = [
     {
-        title: 'HTML, CSS & JS basic experiment',
+        title: 'Basic',
         value: 'basic',
     },
     {
-        title: 'Three.js experiment',
+        title: 'Three',
         value: 'threejs-experiment',
     },
 ];
