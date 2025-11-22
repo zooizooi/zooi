@@ -14,7 +14,7 @@ import boilerplates from './boilerplates.js';
 import scripts from './scripts.js';
 import emptyBin from './scripts/empty-bin.js';
 
-(async() => {
+(async () => {
     const response = await prompts([
         {
             type: 'select',
@@ -89,7 +89,7 @@ import emptyBin from './scripts/empty-bin.js';
         removeGitFolder(projectName);
         updateTextInFile(`./${projectName}/package.json`, 'boilerplate-experiments-threejs', projectName);
         updateTextInFile(`./${projectName}/index.html`, 'Boilerplate Experiments ThreeJS', projectName);
-        updateTextInFile(`./${projectName}/src/Globals.ts`, 'boilerplate-experiments-threejs', projectName);
+        updateTextInFile(`./${projectName}/src/modules/Globals.ts`, 'boilerplate-experiments-threejs', projectName);
         removeFile(`./${projectName}/README.md`);
         console.log('2. Files updated');
 
