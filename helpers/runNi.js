@@ -11,18 +11,12 @@ export default function runNi(targetDir) {
         // Normalize the path
         const normalizedPath = path.resolve(targetDir);
 
-        // Determine the ni command based on the platform
-        const niCmd = process.platform === 'win32' ? 'ni.cmd' : 'ni';
-
-        // Spawn ni process
-        const niProcess = spawn(niCmd, [], {
+        // On Windows, use npx to run ni, which handles .cmd files properly
+        // On other platforms, use npx as well for consistency
+        const niProcess = spawn('npx', ['-y', '@antfu/ni'], {
             cwd: normalizedPath,
             stdio: 'inherit', // This will pipe the output to the parent process
-            env: {
-                ...process.env,
-                // Ensure PATH includes global npm binaries
-                PATH: `${process.env.PATH}:${process.env.npm_config_prefix}/bin`,
-            },
+            shell: process.platform === 'win32', // Use shell on Windows for better compatibility
         });
 
         niProcess.on('close', (code) => {
